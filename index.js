@@ -4,7 +4,10 @@ const cors = require("cors");
 const db = require("./database/db");
 
 //! Routers
-const plantsCategories = require("./Routes/PlantsCate");
+const CategoriesRoute = require("./Routes/CategoriesRoute");
+const IndoorPlantRoute = require("./Routes/IndoorPlantRoute")
+const FruitPlantRoute = require("./Routes/FruitRouter");
+const FlowerRoute = require("./Routes/FlowerRoute");
 
 dotenv.config();
 
@@ -26,7 +29,11 @@ app.use(cors(), (req, res, next) => {
 
 const apiVersion = "/api/v1";
 
-app.use(`${apiVersion}/plantscategories`, plantsCategories);
+app.use(`${apiVersion}/categories`, CategoriesRoute);
+app.use(`${apiVersion}/indoor-plants`, IndoorPlantRoute);
+app.use(`${apiVersion}/fruit`, FruitPlantRoute);
+app.use(`${apiVersion}/flower`, FlowerRoute);
+
 
 app.listen(process.env.PORT, () => {
   console.log(`Server is running at ${process.env.PORT}`);
