@@ -5,7 +5,7 @@ const Flower = require("../database/Models/FlowerModel")
 const router = express.Router();
 
 const corsOptions = {
-  origin: "*",
+  origin: "https://express-back-rho.vercel.app/",
 };
 
 router.use(cors(corsOptions));
