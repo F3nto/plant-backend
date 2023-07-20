@@ -28,10 +28,10 @@ app.use(cors(), (req, res, next) => {
 });
 
 
-app.use(`api/categories`, CategoriesRoute);
-app.use(`api/indoor-plants`, IndoorPlantRoute);
-app.use(`api/fruit`, FruitPlantRoute);
-app.use(`api/flower`, FlowerRoute);
+app.use(`api/v1/categories`, CategoriesRoute);
+app.use(`api/v1/indoor-plants`, IndoorPlantRoute);
+app.use(`api/v1/fruit`, FruitPlantRoute);
+app.use(`api/v1/flower`, FlowerRoute);
 
 
 app.listen(process.env.PORT, () => {
