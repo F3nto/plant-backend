@@ -5,7 +5,7 @@ const cors = require("cors");
 const router = express.Router();
 
 const corsOptions = {
-  origin: "https://express-back-rho.vercel.app/",
+  origin: "*",
 };
 
 router.use(cors(corsOptions));
