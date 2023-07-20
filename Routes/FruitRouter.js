@@ -10,7 +10,7 @@ const corsOptions = {
 
 router.use(cors(corsOptions));
 
-router.post("/", cors(), async (req, res) => {
+router.post("/", async (req, res) => {
   const newFruit = new Fruit({
     name: req.body.name,
     price: req.body.price,
@@ -36,7 +36,7 @@ router.post("/", cors(), async (req, res) => {
     });
 });
 
-router.get("/", cors(), async (req, res) => {
+router.get("/", async (req, res) => {
   await Fruit.find()
     .then((item) => {
       res.status(200).json(item);
