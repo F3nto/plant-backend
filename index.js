@@ -27,12 +27,11 @@ app.use(cors(), (req, res, next) => {
   next();
 });
 
-const apiVersion = "/api/v1";
 
-app.use(`${apiVersion}/categories`, CategoriesRoute);
-app.use(`${apiVersion}/indoor-plants`, IndoorPlantRoute);
-app.use(`${apiVersion}/fruit`, FruitPlantRoute);
-app.use(`${apiVersion}/flower`, FlowerRoute);
+app.use(`api/categories`, CategoriesRoute);
+app.use(`api/indoor-plants`, IndoorPlantRoute);
+app.use(`api/fruit`, FruitPlantRoute);
+app.use(`api/flower`, FlowerRoute);
 
 
 app.listen(process.env.PORT, () => {
