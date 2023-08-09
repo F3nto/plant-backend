@@ -2,9 +2,11 @@ const mongoose = require("mongoose");
 
 const IndoorPlantSchema = mongoose.Schema(
   {
-    plantName: { type: String, required: true },
-    img: { type: String, required: true },
+    name: { type: String, required: true },
+    subImg: { type: String, required: true },
     price: { type: String, required: true },
+    quantity : {type : String, required : true},
+    type : {type:String, required: true},
     moreDetail: {
       img1: { type: String, required: true },
       light: { type: String, required: true },

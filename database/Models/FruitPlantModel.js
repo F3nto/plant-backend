@@ -4,7 +4,9 @@ const FruitPlantSchema = mongoose.Schema(
   {
     name: { type: String, required: true },
     price: { type: String, required: true },
+    quantity : {type : String, required : true},
     subImg: { type: String, required: true },
+    type : {type:String, required: true},
     moreDetail: {
       subImg1: { type: String, required: true },
       light: { type: String, required: true },

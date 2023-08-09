@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-const IndoorPlant = require("../database/Models/IndoorPlant");
+const RawMat = require("../database/Models/RawMatModel")
 
 const router = express.Router();
 
@@ -11,23 +11,25 @@ const corsOptions = {
 router.use(cors(corsOptions));
 
 router.post("/", cors(), async (req, res) => {
-  const newIndoorPlant = new IndoorPlant({
+  const newRawMat = new RawMat({
     name: req.body.name,
     subImg: req.body.subImg,
-    price: req.body.price,
+    price : req.body.price,
     quantity : req.body.quantity,
     type : req.body.type,
     moreDetail: {
-      img1: req.body.moreDetail.img1,
+      description: req.body.moreDetail.description,
+      subImg1: req.body.moreDetail.subImg1,
       light: req.body.moreDetail.light,
       soil: req.body.moreDetail.soil,
       water: req.body.moreDetail.water,
       temp: req.body.moreDetail.temp,
       fertilizer: req.body.moreDetail.fertilizer,
+    
     },
   });
 
-  await newIndoorPlant
+  await newRawMat
     .save()
     .then((savedItem) => {
       res.status(200).json(savedItem);
@@ -42,13 +44,13 @@ router.put("/:id", cors(), (req, res) => {
   const { id } = req.params;
   const updatedData = req.body;
 
-  IndoorPlant.findById(id)
-    .then((indoor) => {
-      indoor.set(updatedData);
-      return IndoorPlant.save();
+  RawMat.findById(id)
+    .then((raw) => {
+      raw.set(updatedData);
+      return RawMat.save();
     })
-    .then((updatedIndoor) => {
-      res.status(200).json(updatedIndoor);
+    .then((updatedRaw) => {
+      res.status(200).json(updatedRaw);
     })
     .catch((error) => {
       res.status(500).json({ error: error.message });
@@ -60,18 +62,18 @@ router.patch("/:id", cors(), (req, res) => {
   const { id } = req.params;
   const updatedData = req.body;
 
-  IndoorPlant.findById(id)
-    .then((IndoorPlant) => {
-      if (!IndoorPlant) {
-        return res.status(404).json({ error: "Indoor not found" });
+  RawMat.findById(id)
+    .then((RawMat) => {
+      if (!RawMat) {
+        return res.status(404).json({ error: "Fruit not found" });
       }
 
-      Object.assign(IndoorPlant, updatedData);
+      Object.assign(RawMat, updatedData);
 
-      return IndoorPlant.save();
+      return RawMat.save();
     })
-    .then((updatedIndoor) => {
-      res.status(200).json(updatedIndoor);
+    .then((updatedRawMat) => {
+      res.status(200).json(updatedRawMat);
     })
     .catch((error) => {
       res.status(500).json({ error: error.message });
@@ -82,13 +84,13 @@ router.patch("/:id", cors(), (req, res) => {
 router.delete("/:id", cors(), (req, res) => {
   const { id } = req.params;
 
-  IndoorPlant.findByIdAndDelete(id)
-    .then((deletedIndoor) => {
-      if (!deletedIndoor) {
-        return res.status(404).json({ error: "Indoor not found" });
+  RawMat.findByIdAndDelete(id)
+    .then((deletedRawMat) => {
+      if (!deletedRawMat) {
+        return res.status(404).json({ error: "Raw Mat not found" });
       }
 
-      res.status(200).json({ message: "Indoor deleted successfully" });
+      res.status(200).json({ message: "Raw Mat deleted successfully" });
     })
     .catch((error) => {
       res.status(500).json({ error: error.message });
@@ -96,7 +98,7 @@ router.delete("/:id", cors(), (req, res) => {
 });
 
 router.get("/", cors(), async (req, res) => {
-  await IndoorPlant.find()
+  await RawMat.find()
     .then((item) => {
       res.status(200).json(item);
     })
