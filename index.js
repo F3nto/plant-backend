@@ -13,6 +13,7 @@ const LoginRoute = require("./Routes/loginRoute");
 const RawMatRoute = require("./Routes/RawMatRoute");
 const AdminSignUpRoute = require("./Routes/AdminSignUpRoute");
 const AdminLoginRoute = require("./Routes/AdminLoginRoute");
+const VoucherRoute = require("./Routes/VoucherRoute")
 
 dotenv.config();
 
@@ -42,6 +43,7 @@ app.use(`/signup`, SignUpRoute);
 app.use(`/login`, LoginRoute);
 app.use(`/admin-signup`, AdminSignUpRoute);
 app.use(`/admin-login`, AdminLoginRoute);
+app.use(`/voucher`, VoucherRoute);
 
 
 
